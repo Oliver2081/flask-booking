@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TBHA Rehearsal Room Booking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <!-- Favicons -->
+    <link rel="icon" href="{{ url_for('static', filename='favicon-32x32.png') }}" sizes="32x32" type="image/png">
+    <link rel="icon" href="{{ url_for('static', filename='favicon-16x16.png') }}" sizes="16x16" type="image/png">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
+
+    <!-- Android Chrome Icons -->
+    <link rel="icon" href="{{ url_for('static', filename='android-chrome-192x192.png') }}" sizes="192x192" type="image/png">
+    <link rel="icon" href="{{ url_for('static', filename='android-chrome-512x512.png') }}" sizes="512x512" type="image/png">
+</head>
+
+
+
+<body>
+	<!-- Dark Mode Switch -->
+		<button id="darkModeSwitch" class="dark-mode-switch">Toggle Dark Mode</button>
+    
+    
+    <div class="title-box">
+		<h1 class="center-title">TBHA Rehearsal Room Booking</h1>
+	</div>
+
+    <div class="container">
+        <div class="rules">
+            <h2 class="center-title">Booking Rules</h2>
+		<ul>
+			<li>This Space Can Be Used Between 1:20 PM And 1:50 PM.</li>
+			<li>No Eating Or Drinking.</li>
+			<li>No Moving Equipment.</li>
+			<li>No Reserving The Room (With Coats And Bags).</li>
+			<li>No Leaving The Room During Your Rehearsal Time.</li>
+		</ul>
+
+        </div>
+
+        <div class="booking-form">
+            <h2 class="center-title">Book a Room</h2>
+            <form id="bookingForm">
+                <label for="date">Date:</label>
+				<select id="date" name="date" required>
+					<option value="" disabled selected>Select Date</option>
+					<!-- Dates will be dynamically populated here -->
+				</select>
+
+                <label for="room">Room:</label>
+				<select id="room" name="room" required>
+					<option value="Select Room" disabled selected>Select Room</option>
+					<option value="Room 1">Room 1</option>
+					<option value="Room 2">Room 2</option>
+					<option value="Room 3">Room 3</option>
+					<option value="Room 4">Room 4</option>
+					<option value="Room 5">Room 5</option>
+					<option value="Room 6">Room 6</option>
+					<option value="Room 7">Room 7</option>
+					<option value="Room 8">Room 8</option>
+					<option value="Ensemble Room">Ensemble Room</option>
+				</select>
+
+
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required>
+
+                <div class="checkbox">
+					<input type="checkbox" id="agreeRules" name="agreeRules">
+					<label for="agreeRules">I agree to the rules</label>
+				</div>
+
+
+                <button type="submit">Book Room</button>
+            </form>
+        </div>
+    </div>
+
+    <h2 class="center-title">Room Availability for the Next Two Weeks</h2>
+    <table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Room 1</th>
+            <th>Room 2</th>
+            <th>Room 3</th>
+            <th>Room 4</th>
+            <th>Room 5</th>
+            <th>Room 6</th>
+            <th>Room 7</th>
+            <th>Room 8</th>
+            <th>Ensemble Room</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in table_data %}
+        <tr>
+            <td>{{ row.date }}</td>
+            <td>{{ row['Room 1'] }}</td>
+            <td>{{ row['Room 2'] }}</td>
+            <td>{{ row['Room 3'] }}</td>
+            <td>{{ row['Room 4'] }}</td>
+            <td>{{ row['Room 5'] }}</td>
+            <td>{{ row['Room 6'] }}</td>
+            <td>{{ row['Room 7'] }}</td>
+            <td>{{ row['Room 8'] }}</td>
+            <td>{{ row['Ensemble Room'] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+</body>
+</html>
